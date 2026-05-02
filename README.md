@@ -16,7 +16,7 @@ Metals-API provides a free, simple, and lightweight JSON API for current and his
 ## Timestamps
 
 - **Created:** 2025-03-01 
-- **Modified:** 2026-03-16 
+- **Modified:** 2026-04-28 
 
 ## APIs
 
@@ -34,6 +34,7 @@ The Metals-API provides real-time and historical precious metals rates and curre
 
 - [Documentation](https://metals-api.com/documentation)
 - [Getting Started](https://metals-api.com/documentation#access_key)
+- [OpenAPI](openapi/metals-api-openapi.yml)
 
 ## Common Properties
 
