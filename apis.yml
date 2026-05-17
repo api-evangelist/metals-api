@@ -35,7 +35,7 @@ apis:
     properties:
       - type: Documentation
         url: https://metals-api.com/documentation
-      - type: Getting Started
+      - type: GettingStarted
         url: https://metals-api.com/documentation#access_key
       - type: OpenAPI
         url: openapi/metals-api-openapi.yml
@@ -44,7 +44,7 @@ common:
     url: https://metals-api.com/
   - type: Pricing
     url: https://metals-api.com/pricing
-  - type: Sign Up
+  - type: SignUp
     url: https://metals-api.com/signup
 maintainers:
   - FN: Kin Lane
