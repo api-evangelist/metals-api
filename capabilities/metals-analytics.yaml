@@ -1,0 +1,216 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Metals-API — Analytics
+  description: 'Metals-API — Analytics. 4 operations. Lead operation: Get rate fluctuation. Self-contained Naftiko capability
+    covering one Metals Api business surface.'
+  tags:
+  - Metals Api
+  - Analytics
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    METALS_API_API_KEY: METALS_API_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: metals-analytics
+    baseUri: https://metals-api.com/api
+    description: Metals-API — Analytics business capability. Self-contained, no shared references.
+    resources:
+    - name: fluctuation
+      path: /fluctuation
+      operations:
+      - name: getfluctuation
+        method: GET
+        description: Get rate fluctuation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: start_date
+          in: query
+          type: string
+          required: true
+        - name: end_date
+          in: query
+          type: string
+          required: true
+    - name: lowest-highest-date
+      path: /lowest-highest/{date}
+      operations:
+      - name: getlowesthighest
+        method: GET
+        description: Get daily lowest and highest prices
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: date
+          in: path
+          type: string
+          required: true
+    - name: open-high-low-close-date
+      path: /open-high-low-close/{date}
+      operations:
+      - name: getohlc
+        method: GET
+        description: Get OHLC data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: date
+          in: path
+          type: string
+          required: true
+    - name: timeseries
+      path: /timeseries
+      operations:
+      - name: gettimeseries
+        method: GET
+        description: Get rates over a time series
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: start_date
+          in: query
+          type: string
+          required: true
+        - name: end_date
+          in: query
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: access_key
+      value: '{{env.METALS_API_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: metals-analytics-rest
+    port: 8080
+    description: REST adapter for Metals-API — Analytics. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/fluctuation
+      name: fluctuation
+      description: REST surface for fluctuation.
+      operations:
+      - method: GET
+        name: getfluctuation
+        description: Get rate fluctuation
+        call: metals-analytics.getfluctuation
+        with:
+          start_date: rest.start_date
+          end_date: rest.end_date
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/lowest-highest/{date}
+      name: lowest-highest-date
+      description: REST surface for lowest-highest-date.
+      operations:
+      - method: GET
+        name: getlowesthighest
+        description: Get daily lowest and highest prices
+        call: metals-analytics.getlowesthighest
+        with:
+          date: rest.date
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/open-high-low-close/{date}
+      name: open-high-low-close-date
+      description: REST surface for open-high-low-close-date.
+      operations:
+      - method: GET
+        name: getohlc
+        description: Get OHLC data
+        call: metals-analytics.getohlc
+        with:
+          date: rest.date
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/timeseries
+      name: timeseries
+      description: REST surface for timeseries.
+      operations:
+      - method: GET
+        name: gettimeseries
+        description: Get rates over a time series
+        call: metals-analytics.gettimeseries
+        with:
+          start_date: rest.start_date
+          end_date: rest.end_date
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: metals-analytics-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Metals-API — Analytics. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-rate-fluctuation
+      description: Get rate fluctuation
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: metals-analytics.getfluctuation
+      with:
+        start_date: tools.start_date
+        end_date: tools.end_date
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-daily-lowest-and-highest
+      description: Get daily lowest and highest prices
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: metals-analytics.getlowesthighest
+      with:
+        date: tools.date
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-ohlc-data
+      description: Get OHLC data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: metals-analytics.getohlc
+      with:
+        date: tools.date
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-rates-over-time-series
+      description: Get rates over a time series
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: metals-analytics.gettimeseries
+      with:
+        start_date: tools.start_date
+        end_date: tools.end_date
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Metals-API — Reference
+  description: 'Metals-API — Reference. 1 operations. Lead operation: List supported symbols. Self-contained Naftiko capability
+    covering one Metals Api business surface.'
+  tags:
+  - Metals Api
+  - Reference
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    METALS_API_API_KEY: METALS_API_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: metals-reference
+    baseUri: https://metals-api.com/api
+    description: Metals-API — Reference business capability. Self-contained, no shared references.
+    resources:
+    - name: symbols
+      path: /symbols
+      operations:
+      - name: getsymbols
+        method: GET
+        description: List supported symbols
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: access_key
+      value: '{{env.METALS_API_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: metals-reference-rest
+    port: 8080
+    description: REST adapter for Metals-API — Reference. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/symbols
+      name: symbols
+      description: REST surface for symbols.
+      operations:
+      - method: GET
+        name: getsymbols
+        description: List supported symbols
+        call: metals-reference.getsymbols
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: metals-reference-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Metals-API — Reference. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-supported-symbols
+      description: List supported symbols
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: metals-reference.getsymbols
+      outputParameters:
+      - type: object
+        mapping: $.

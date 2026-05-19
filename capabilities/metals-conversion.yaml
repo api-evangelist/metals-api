@@ -1,0 +1,102 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Metals-API — Conversion
+  description: 'Metals-API — Conversion. 1 operations. Lead operation: Convert between currencies and metals. Self-contained
+    Naftiko capability covering one Metals Api business surface.'
+  tags:
+  - Metals Api
+  - Conversion
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    METALS_API_API_KEY: METALS_API_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: metals-conversion
+    baseUri: https://metals-api.com/api
+    description: Metals-API — Conversion business capability. Self-contained, no shared references.
+    resources:
+    - name: convert
+      path: /convert
+      operations:
+      - name: convert
+        method: GET
+        description: Convert between currencies and metals
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: from
+          in: query
+          type: string
+          description: Source currency or metal symbol.
+          required: true
+        - name: to
+          in: query
+          type: string
+          description: Target currency or metal symbol.
+          required: true
+        - name: amount
+          in: query
+          type: number
+          description: Amount to convert.
+          required: true
+        - name: date
+          in: query
+          type: string
+          description: Optional historical date in YYYY-MM-DD format.
+    authentication:
+      type: apikey
+      key: access_key
+      value: '{{env.METALS_API_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: metals-conversion-rest
+    port: 8080
+    description: REST adapter for Metals-API — Conversion. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/convert
+      name: convert
+      description: REST surface for convert.
+      operations:
+      - method: GET
+        name: convert
+        description: Convert between currencies and metals
+        call: metals-conversion.convert
+        with:
+          from: rest.from
+          to: rest.to
+          amount: rest.amount
+          date: rest.date
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: metals-conversion-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Metals-API — Conversion. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: convert-between-currencies-and-metals
+      description: Convert between currencies and metals
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: metals-conversion.convert
+      with:
+        from: tools.from
+        to: tools.to
+        amount: tools.amount
+        date: tools.date
+      outputParameters:
+      - type: object
+        mapping: $.
