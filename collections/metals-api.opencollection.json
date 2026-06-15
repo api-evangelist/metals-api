@@ -1,0 +1,309 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Metals-API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "access_key",
+      "value": "{{access_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reference",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List supported symbols",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metals-api.com/api/symbols"
+          },
+          "docs": "Returns all available currencies and metals supported by the API."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Rates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get latest rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metals-api.com/api/latest",
+            "params": [
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Three-letter currency or metal code that serves as the base."
+              },
+              {
+                "name": "symbols",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of currency or metal codes to limit the response."
+              },
+              {
+                "name": "unit",
+                "value": "",
+                "type": "query",
+                "description": "Unit of measure (e.g., troy_ounce, gram, kilogram)."
+              }
+            ]
+          },
+          "docs": "Returns the most recent precious metals and currency exchange rates."
+        },
+        {
+          "info": {
+            "name": "Get historical rates by date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metals-api.com/api/:date",
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "Date in YYYY-MM-DD format."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Three-letter currency or metal code that serves as the base."
+              },
+              {
+                "name": "symbols",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of currency or metal codes to limit the response."
+              }
+            ]
+          },
+          "docs": "Returns historical rates for a specific date in YYYY-MM-DD format."
+        },
+        {
+          "info": {
+            "name": "Get gold prices by carat",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metals-api.com/api/carat",
+            "params": [
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Three-letter currency or metal code that serves as the base."
+              }
+            ]
+          },
+          "docs": "Returns gold prices broken down by carat weight."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Conversion",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Convert between currencies and metals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metals-api.com/api/convert",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Source currency or metal symbol."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Target currency or metal symbol."
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query",
+                "description": "Amount to convert."
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Optional historical date in YYYY-MM-DD format."
+              }
+            ]
+          },
+          "docs": "Convert any amount from one currency or metal to another."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get rates over a time series",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metals-api.com/api/timeseries",
+            "params": [
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Three-letter currency or metal code that serves as the base."
+              },
+              {
+                "name": "symbols",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of currency or metal codes to limit the response."
+              }
+            ]
+          },
+          "docs": "Returns daily rates between two dates."
+        },
+        {
+          "info": {
+            "name": "Get rate fluctuation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metals-api.com/api/fluctuation",
+            "params": [
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Three-letter currency or metal code that serves as the base."
+              },
+              {
+                "name": "symbols",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of currency or metal codes to limit the response."
+              }
+            ]
+          },
+          "docs": "Returns rate fluctuations between a start and end date."
+        },
+        {
+          "info": {
+            "name": "Get daily lowest and highest prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metals-api.com/api/lowest-highest/:date",
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Three-letter currency or metal code that serves as the base."
+              },
+              {
+                "name": "symbols",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of currency or metal codes to limit the response."
+              }
+            ]
+          },
+          "docs": "Returns daily lowest and highest prices for the requested date."
+        },
+        {
+          "info": {
+            "name": "Get OHLC data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metals-api.com/api/open-high-low-close/:date",
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Three-letter currency or metal code that serves as the base."
+              },
+              {
+                "name": "symbols",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of currency or metal codes to limit the response."
+              }
+            ]
+          },
+          "docs": "Returns open, high, low, and close prices for the requested date."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
