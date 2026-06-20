@@ -5,7 +5,7 @@ description: >-
   currency conversion. It supports real-time and historical data for gold, silver, platinum, palladium, and other metals
   in 170 world currencies.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Currency
   - Financial Data
