@@ -43,7 +43,7 @@ common:
     url: https://metals-api.com/
   - type: Pricing
     url: https://metals-api.com/pricing
-  - type: SignUp
+  - type: Signup
     url: https://metals-api.com/signup
 maintainers:
   - FN: Kin Lane
