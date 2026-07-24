@@ -1,0 +1,120 @@
+openapi: 3.1.0
+info:
+  title: Metals Analytics Rates API
+  description: Metals-API provides a free, simple, and lightweight JSON API for current and historical precious metals rates and currency conversion. It supports real-time and historical data for gold, silver, platinum, palladium, and other metals in 170 world currencies.
+  version: '1.0'
+  contact:
+    name: Metals-API
+    url: https://metals-api.com/
+  license:
+    name: Proprietary
+    url: https://metals-api.com/terms
+servers:
+- url: https://metals-api.com/api
+  description: Production
+security:
+- accessKey: []
+tags:
+- name: Rates
+  description: Real-time and historical precious metals rates.
+paths:
+  /latest:
+    get:
+      summary: Get latest rates
+      description: Returns the most recent precious metals and currency exchange rates.
+      operationId: getLatest
+      tags:
+      - Rates
+      parameters:
+      - $ref: '#/components/parameters/Base'
+      - $ref: '#/components/parameters/Symbols'
+      - name: unit
+        in: query
+        description: Unit of measure (e.g., troy_ounce, gram, kilogram).
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Latest rates.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RatesResponse'
+  /{date}:
+    get:
+      summary: Get historical rates by date
+      description: Returns historical rates for a specific date in YYYY-MM-DD format.
+      operationId: getHistoricalRates
+      tags:
+      - Rates
+      parameters:
+      - name: date
+        in: path
+        required: true
+        description: Date in YYYY-MM-DD format.
+        schema:
+          type: string
+          format: date
+      - $ref: '#/components/parameters/Base'
+      - $ref: '#/components/parameters/Symbols'
+      responses:
+        '200':
+          description: Historical rates for the requested date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RatesResponse'
+  /carat:
+    get:
+      summary: Get gold prices by carat
+      description: Returns gold prices broken down by carat weight.
+      operationId: getCarat
+      tags:
+      - Rates
+      parameters:
+      - $ref: '#/components/parameters/Base'
+      responses:
+        '200':
+          description: Gold prices by carat.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RatesResponse'
+components:
+  schemas:
+    RatesResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        timestamp:
+          type: integer
+        base:
+          type: string
+        date:
+          type: string
+          format: date
+        rates:
+          type: object
+          additionalProperties:
+            type: number
+        unit:
+          type: string
+  parameters:
+    Base:
+      name: base
+      in: query
+      description: Three-letter currency or metal code that serves as the base.
+      schema:
+        type: string
+    Symbols:
+      name: symbols
+      in: query
+      description: Comma-separated list of currency or metal codes to limit the response.
+      schema:
+        type: string
+  securitySchemes:
+    accessKey:
+      type: apiKey
+      in: query
+      name: access_key
