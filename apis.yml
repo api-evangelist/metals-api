@@ -5,7 +5,20 @@ description: >-
   currency conversion. It supports real-time and historical data for gold, silver, platinum, palladium, and other metals
   in 170 world currencies.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/metals-api.png
 tags:
   - Currency
   - Financial Data
@@ -17,25 +30,62 @@ created: '2025-03-01'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: metals-api:metals-api
-    name: Metals-API
-    description: >-
-      The Metals-API provides real-time and historical precious metals rates and currency conversion in standard JSON
-      format. Endpoints include latest rates, bid and ask prices, historical rates, and time-series data.
-    humanURL: https://metals-api.com/
-    baseURL: https://metals-api.com/api
-    tags:
-      - Financial Data
-      - Gold
-      - Precious Metals
-      - Silver
-    properties:
-      - type: Documentation
-        url: https://metals-api.com/documentation
-      - type: GettingStarted
-        url: https://metals-api.com/documentation#access_key
-      - type: OpenAPI
-        url: openapi/metals-api-openapi.yml
+- aid: metals-api:metals-api-analytics-api
+  name: Metals-API Analytics API
+  description: Time series, fluctuation, and OHLC analytics.
+  humanURL: https://metals-api.com/
+  baseURL: https://metals-api.com/api
+  tags:
+  - Analytics
+  properties:
+  - type: OpenAPI
+    url: openapi/metals-api-analytics-api-openapi.yml
+  - type: Documentation
+    url: https://metals-api.com/documentation
+  - type: GettingStarted
+    url: https://metals-api.com/documentation#access_key
+- aid: metals-api:metals-api-conversion-api
+  name: Metals-API Conversion API
+  description: Currency and metal conversion endpoints.
+  humanURL: https://metals-api.com/
+  baseURL: https://metals-api.com/api
+  tags:
+  - Conversion
+  properties:
+  - type: OpenAPI
+    url: openapi/metals-api-conversion-api-openapi.yml
+  - type: Documentation
+    url: https://metals-api.com/documentation
+  - type: GettingStarted
+    url: https://metals-api.com/documentation#access_key
+- aid: metals-api:metals-api-rates-api
+  name: Metals-API Rates API
+  description: Real-time and historical precious metals rates.
+  humanURL: https://metals-api.com/
+  baseURL: https://metals-api.com/api
+  tags:
+  - Rates
+  properties:
+  - type: OpenAPI
+    url: openapi/metals-api-rates-api-openapi.yml
+  - type: Documentation
+    url: https://metals-api.com/documentation
+  - type: GettingStarted
+    url: https://metals-api.com/documentation#access_key
+- aid: metals-api:metals-api-reference-api
+  name: Metals-API Reference API
+  description: Symbols and reference data.
+  humanURL: https://metals-api.com/
+  baseURL: https://metals-api.com/api
+  tags:
+  - Reference
+  properties:
+  - type: OpenAPI
+    url: openapi/metals-api-reference-api-openapi.yml
+  - type: Documentation
+    url: https://metals-api.com/documentation
+  - type: GettingStarted
+    url: https://metals-api.com/documentation#access_key
 common:
   - type: AgenticAccess
     url: agentic-access/metals-api-agentic-access.yml
