@@ -1,0 +1,390 @@
+openapi: 3.1.0
+info:
+  title: Metals-API
+  description: >-
+    Metals-API provides a free, simple, and lightweight JSON API for current
+    and historical precious metals rates and currency conversion. It supports
+    real-time and historical data for gold, silver, platinum, palladium, and
+    other metals in 170 world currencies.
+  version: '1.0'
+  contact:
+    name: Metals-API
+    url: https://metals-api.com/
+  license:
+    name: Proprietary
+    url: https://metals-api.com/terms
+servers:
+  - url: https://metals-api.com/api
+    description: Production
+security:
+  - accessKey: []
+tags:
+  - name: Rates
+    description: Real-time and historical precious metals rates.
+  - name: Conversion
+    description: Currency and metal conversion endpoints.
+  - name: Reference
+    description: Symbols and reference data.
+  - name: Analytics
+    description: Time series, fluctuation, and OHLC analytics.
+paths:
+  /symbols:
+    get:
+      summary: List supported symbols
+      description: Returns all available currencies and metals supported by the API.
+      operationId: getSymbols
+      tags:
+        - Reference
+      responses:
+        '200':
+          description: A list of supported metals and currencies.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SymbolsResponse'
+  /latest:
+    get:
+      summary: Get latest rates
+      description: Returns the most recent precious metals and currency exchange rates.
+      operationId: getLatest
+      tags:
+        - Rates
+      parameters:
+        - $ref: '#/components/parameters/Base'
+        - $ref: '#/components/parameters/Symbols'
+        - name: unit
+          in: query
+          description: Unit of measure (e.g., troy_ounce, gram, kilogram).
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Latest rates.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RatesResponse'
+  /{date}:
+    get:
+      summary: Get historical rates by date
+      description: Returns historical rates for a specific date in YYYY-MM-DD format.
+      operationId: getHistoricalRates
+      tags:
+        - Rates
+      parameters:
+        - name: date
+          in: path
+          required: true
+          description: Date in YYYY-MM-DD format.
+          schema:
+            type: string
+            format: date
+        - $ref: '#/components/parameters/Base'
+        - $ref: '#/components/parameters/Symbols'
+      responses:
+        '200':
+          description: Historical rates for the requested date.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RatesResponse'
+  /convert:
+    get:
+      summary: Convert between currencies and metals
+      description: Convert any amount from one currency or metal to another.
+      operationId: convert
+      tags:
+        - Conversion
+      parameters:
+        - name: from
+          in: query
+          required: true
+          description: Source currency or metal symbol.
+          schema:
+            type: string
+        - name: to
+          in: query
+          required: true
+          description: Target currency or metal symbol.
+          schema:
+            type: string
+        - name: amount
+          in: query
+          required: true
+          description: Amount to convert.
+          schema:
+            type: number
+        - name: date
+          in: query
+          description: Optional historical date in YYYY-MM-DD format.
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Conversion result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConvertResponse'
+  /timeseries:
+    get:
+      summary: Get rates over a time series
+      description: Returns daily rates between two dates.
+      operationId: getTimeseries
+      tags:
+        - Analytics
+      parameters:
+        - name: start_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: end_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - $ref: '#/components/parameters/Base'
+        - $ref: '#/components/parameters/Symbols'
+      responses:
+        '200':
+          description: Time series rates.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeseriesResponse'
+  /fluctuation:
+    get:
+      summary: Get rate fluctuation
+      description: Returns rate fluctuations between a start and end date.
+      operationId: getFluctuation
+      tags:
+        - Analytics
+      parameters:
+        - name: start_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: end_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - $ref: '#/components/parameters/Base'
+        - $ref: '#/components/parameters/Symbols'
+      responses:
+        '200':
+          description: Fluctuation data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FluctuationResponse'
+  /carat:
+    get:
+      summary: Get gold prices by carat
+      description: Returns gold prices broken down by carat weight.
+      operationId: getCarat
+      tags:
+        - Rates
+      parameters:
+        - $ref: '#/components/parameters/Base'
+      responses:
+        '200':
+          description: Gold prices by carat.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RatesResponse'
+  /lowest-highest/{date}:
+    get:
+      summary: Get daily lowest and highest prices
+      description: Returns daily lowest and highest prices for the requested date.
+      operationId: getLowestHighest
+      tags:
+        - Analytics
+      parameters:
+        - name: date
+          in: path
+          required: true
+          schema:
+            type: string
+            format: date
+        - $ref: '#/components/parameters/Base'
+        - $ref: '#/components/parameters/Symbols'
+      responses:
+        '200':
+          description: Daily lowest and highest prices.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RatesResponse'
+  /open-high-low-close/{date}:
+    get:
+      summary: Get OHLC data
+      description: Returns open, high, low, and close prices for the requested date.
+      operationId: getOhlc
+      tags:
+        - Analytics
+      parameters:
+        - name: date
+          in: path
+          required: true
+          schema:
+            type: string
+            format: date
+        - $ref: '#/components/parameters/Base'
+        - $ref: '#/components/parameters/Symbols'
+      responses:
+        '200':
+          description: OHLC data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OhlcResponse'
+components:
+  securitySchemes:
+    accessKey:
+      type: apiKey
+      in: query
+      name: access_key
+  parameters:
+    Base:
+      name: base
+      in: query
+      description: Three-letter currency or metal code that serves as the base.
+      schema:
+        type: string
+    Symbols:
+      name: symbols
+      in: query
+      description: Comma-separated list of currency or metal codes to limit the response.
+      schema:
+        type: string
+  schemas:
+    SymbolsResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        symbols:
+          type: object
+          additionalProperties:
+            type: string
+    RatesResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        timestamp:
+          type: integer
+        base:
+          type: string
+        date:
+          type: string
+          format: date
+        rates:
+          type: object
+          additionalProperties:
+            type: number
+        unit:
+          type: string
+    ConvertResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        query:
+          type: object
+          properties:
+            from:
+              type: string
+            to:
+              type: string
+            amount:
+              type: number
+        info:
+          type: object
+          properties:
+            timestamp:
+              type: integer
+            rate:
+              type: number
+        result:
+          type: number
+    TimeseriesResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        timeseries:
+          type: boolean
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        base:
+          type: string
+        rates:
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: number
+    FluctuationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        fluctuation:
+          type: boolean
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        base:
+          type: string
+        rates:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              start_rate:
+                type: number
+              end_rate:
+                type: number
+              change:
+                type: number
+              change_pct:
+                type: number
+    OhlcResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        timestamp:
+          type: integer
+        base:
+          type: string
+        rates:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              open:
+                type: number
+              high:
+                type: number
+              low:
+                type: number
+              close:
+                type: number
