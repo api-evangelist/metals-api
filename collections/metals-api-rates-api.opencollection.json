@@ -1,0 +1,107 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Metals Analytics Rates API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "access_key",
+      "value": "{{access_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get latest rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metals-api.com/api/latest",
+            "params": [
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Three-letter currency or metal code that serves as the base."
+              },
+              {
+                "name": "symbols",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of currency or metal codes to limit the response."
+              },
+              {
+                "name": "unit",
+                "value": "",
+                "type": "query",
+                "description": "Unit of measure (e.g., troy_ounce, gram, kilogram)."
+              }
+            ]
+          },
+          "docs": "Returns the most recent precious metals and currency exchange rates."
+        },
+        {
+          "info": {
+            "name": "Get historical rates by date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metals-api.com/api/:date",
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "Date in YYYY-MM-DD format."
+              },
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Three-letter currency or metal code that serves as the base."
+              },
+              {
+                "name": "symbols",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of currency or metal codes to limit the response."
+              }
+            ]
+          },
+          "docs": "Returns historical rates for a specific date in YYYY-MM-DD format."
+        },
+        {
+          "info": {
+            "name": "Get gold prices by carat",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metals-api.com/api/carat",
+            "params": [
+              {
+                "name": "base",
+                "value": "",
+                "type": "query",
+                "description": "Three-letter currency or metal code that serves as the base."
+              }
+            ]
+          },
+          "docs": "Returns gold prices broken down by carat weight."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

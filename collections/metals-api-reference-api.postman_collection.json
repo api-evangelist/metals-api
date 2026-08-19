@@ -1,0 +1,124 @@
+{
+  "item": [
+    {
+      "id": "f84351cc-8283-458e-bc14-9aec3b8c4266",
+      "name": "Reference",
+      "description": {
+        "content": "Symbols and reference data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c382347d-0118-4bee-8c43-67a0665ee2e8",
+          "name": "List supported symbols",
+          "request": {
+            "name": "List supported symbols",
+            "description": {
+              "content": "Returns all available currencies and metals supported by the API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "symbols"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "875ba5a9-f809-4a17-9e9a-202af0ce5294",
+              "name": "A list of supported metals and currencies.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "symbols"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"symbols\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://metals-api.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "access_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2153d969-2870-4876-8e2d-3d3369de4ed5",
+    "name": "Metals Analytics Reference API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Metals-API provides a free, simple, and lightweight JSON API for current and historical precious metals rates and currency conversion. It supports real-time and historical data for gold, silver, platinum, palladium, and other metals in 170 world currencies.\n\nContact Support:\n Name: Metals-API",
+      "type": "text/plain"
+    }
+  }
+}

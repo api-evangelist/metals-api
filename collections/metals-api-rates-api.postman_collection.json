@@ -1,0 +1,353 @@
+{
+  "item": [
+    {
+      "id": "c87a61dc-b248-4750-94ab-f6b9d4588790",
+      "name": "Rates",
+      "description": {
+        "content": "Real-time and historical precious metals rates.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d436e4ba-6a74-4752-a4b8-77f989c75e84",
+          "name": "Get latest rates",
+          "request": {
+            "name": "Get latest rates",
+            "description": {
+              "content": "Returns the most recent precious metals and currency exchange rates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "latest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "base",
+                  "value": "<string>",
+                  "description": "Three-letter currency or metal code that serves as the base."
+                },
+                {
+                  "disabled": false,
+                  "key": "symbols",
+                  "value": "<string>",
+                  "description": "Comma-separated list of currency or metal codes to limit the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "unit",
+                  "value": "<string>",
+                  "description": "Unit of measure (e.g., troy_ounce, gram, kilogram)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6f227080-a034-4cc7-b106-b8d1267ac11e",
+              "name": "Latest rates.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "base",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "symbols",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"timestamp\": 3369,\n  \"base\": \"string\",\n  \"date\": \"2017-08-07\",\n  \"rates\": {\n    \"key_0\": 8157.971919044071,\n    \"key_1\": 5524.590099028072\n  },\n  \"unit\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "70d78767-001c-4798-b993-ac6d814c90d3",
+          "name": "Get historical rates by date",
+          "request": {
+            "name": "Get historical rates by date",
+            "description": {
+              "content": "Returns historical rates for a specific date in YYYY-MM-DD format.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":date"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "base",
+                  "value": "<string>",
+                  "description": "Three-letter currency or metal code that serves as the base."
+                },
+                {
+                  "disabled": false,
+                  "key": "symbols",
+                  "value": "<string>",
+                  "description": "Comma-separated list of currency or metal codes to limit the response."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "date",
+                  "description": "(Required) Date in YYYY-MM-DD format."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9fe07f4a-0452-4778-85c8-e22aacfd18aa",
+              "name": "Historical rates for the requested date.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":date"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "base",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "symbols",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "date",
+                      "description": "(Required) Date in YYYY-MM-DD format."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"timestamp\": 3369,\n  \"base\": \"string\",\n  \"date\": \"2017-08-07\",\n  \"rates\": {\n    \"key_0\": 8157.971919044071,\n    \"key_1\": 5524.590099028072\n  },\n  \"unit\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df68d978-8283-406a-98dc-bdf4eb38a0ba",
+          "name": "Get gold prices by carat",
+          "request": {
+            "name": "Get gold prices by carat",
+            "description": {
+              "content": "Returns gold prices broken down by carat weight.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "carat"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "base",
+                  "value": "<string>",
+                  "description": "Three-letter currency or metal code that serves as the base."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7d4a0f7c-2b5b-4ad1-9292-33f56e13459e",
+              "name": "Gold prices by carat.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "carat"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "base",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"timestamp\": 3369,\n  \"base\": \"string\",\n  \"date\": \"2017-08-07\",\n  \"rates\": {\n    \"key_0\": 8157.971919044071,\n    \"key_1\": 5524.590099028072\n  },\n  \"unit\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://metals-api.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "access_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "86fb7f8d-2e6e-4fac-92f1-17dae8a9a342",
+    "name": "Metals Analytics Rates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Metals-API provides a free, simple, and lightweight JSON API for current and historical precious metals rates and currency conversion. It supports real-time and historical data for gold, silver, platinum, palladium, and other metals in 170 world currencies.\n\nContact Support:\n Name: Metals-API",
+      "type": "text/plain"
+    }
+  }
+}

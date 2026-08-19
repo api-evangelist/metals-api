@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Metals Analytics Conversion API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "access_key",
+      "value": "{{access_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Conversion",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Convert between currencies and metals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metals-api.com/api/convert",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Source currency or metal symbol."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Target currency or metal symbol."
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query",
+                "description": "Amount to convert."
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Optional historical date in YYYY-MM-DD format."
+              }
+            ]
+          },
+          "docs": "Convert any amount from one currency or metal to another."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

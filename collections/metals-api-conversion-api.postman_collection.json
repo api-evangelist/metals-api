@@ -1,0 +1,165 @@
+{
+  "item": [
+    {
+      "id": "9c858386-a351-4b93-aba5-b1bd218de10d",
+      "name": "Conversion",
+      "description": {
+        "content": "Currency and metal conversion endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9615d7a2-9618-440e-b6db-ddb7cceec38e",
+          "name": "Convert between currencies and metals",
+          "request": {
+            "name": "Convert between currencies and metals",
+            "description": {
+              "content": "Convert any amount from one currency or metal to another.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "convert"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<string>",
+                  "description": "(Required) Source currency or metal symbol."
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<string>",
+                  "description": "(Required) Target currency or metal symbol."
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<number>",
+                  "description": "(Required) Amount to convert."
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<date>",
+                  "description": "Optional historical date in YYYY-MM-DD format."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dfe6ab44-2d7c-4e1e-b75d-45173b0caecc",
+              "name": "Conversion result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "convert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "access_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"query\": {\n    \"from\": \"string\",\n    \"to\": \"string\",\n    \"amount\": 8067.069594330701\n  },\n  \"info\": {\n    \"timestamp\": 8843,\n    \"rate\": 8824.156871237257\n  },\n  \"result\": 2056.8441430903304\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://metals-api.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "access_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "20a93fa6-b3d2-4d85-ab79-d287cb9b8b41",
+    "name": "Metals Analytics Conversion API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Metals-API provides a free, simple, and lightweight JSON API for current and historical precious metals rates and currency conversion. It supports real-time and historical data for gold, silver, platinum, palladium, and other metals in 170 world currencies.\n\nContact Support:\n Name: Metals-API",
+      "type": "text/plain"
+    }
+  }
+}
