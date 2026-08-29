@@ -5,6 +5,18 @@ description: >-
   currency conversion. It supports real-time and historical data for gold, silver, platinum, palladium, and other metals
   in 170 world currencies.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
