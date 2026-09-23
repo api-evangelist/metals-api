@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Metals Analytics Reference API
+  title: Metals Reference API
   description: Metals-API provides a free, simple, and lightweight JSON API for current and historical precious metals rates and currency conversion. It supports real-time and historical data for gold, silver, platinum, palladium, and other metals in 170 world currencies.
   version: '1.0'
   contact:
