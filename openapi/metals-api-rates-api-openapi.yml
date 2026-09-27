@@ -81,6 +81,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/RatesResponse'
 components:
+  parameters:
+    Symbols:
+      name: symbols
+      in: query
+      description: Comma-separated list of currency or metal codes to limit the response.
+      schema:
+        type: string
+    Base:
+      name: base
+      in: query
+      description: Three-letter currency or metal code that serves as the base.
+      schema:
+        type: string
   schemas:
     RatesResponse:
       type: object
@@ -100,19 +113,6 @@ components:
             type: number
         unit:
           type: string
-  parameters:
-    Symbols:
-      name: symbols
-      in: query
-      description: Comma-separated list of currency or metal codes to limit the response.
-      schema:
-        type: string
-    Base:
-      name: base
-      in: query
-      description: Three-letter currency or metal code that serves as the base.
-      schema:
-        type: string
   securitySchemes:
     accessKey:
       type: apiKey
