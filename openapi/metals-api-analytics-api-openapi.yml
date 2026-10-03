@@ -124,27 +124,24 @@ paths:
                 $ref: '#/components/schemas/OhlcResponse'
 components:
   schemas:
-    TimeseriesResponse:
+    RatesResponse:
       type: object
       properties:
         success:
           type: boolean
-        timeseries:
-          type: boolean
-        start_date:
-          type: string
-          format: date
-        end_date:
-          type: string
-          format: date
+        timestamp:
+          type: integer
         base:
           type: string
+        date:
+          type: string
+          format: date
         rates:
           type: object
           additionalProperties:
-            type: object
-            additionalProperties:
-              type: number
+            type: number
+        unit:
+          type: string
     FluctuationResponse:
       type: object
       properties:
@@ -173,24 +170,6 @@ components:
                 type: number
               change_pct:
                 type: number
-    RatesResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        timestamp:
-          type: integer
-        base:
-          type: string
-        date:
-          type: string
-          format: date
-        rates:
-          type: object
-          additionalProperties:
-            type: number
-        unit:
-          type: string
     OhlcResponse:
       type: object
       properties:
@@ -213,17 +192,38 @@ components:
                 type: number
               close:
                 type: number
+    TimeseriesResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        timeseries:
+          type: boolean
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        base:
+          type: string
+        rates:
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: number
   parameters:
-    Base:
-      name: base
-      in: query
-      description: Three-letter currency or metal code that serves as the base.
-      schema:
-        type: string
     Symbols:
       name: symbols
       in: query
       description: Comma-separated list of currency or metal codes to limit the response.
+      schema:
+        type: string
+    Base:
+      name: base
+      in: query
+      description: Three-letter currency or metal code that serves as the base.
       schema:
         type: string
   securitySchemes:
