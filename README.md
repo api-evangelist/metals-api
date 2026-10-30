@@ -1,4 +1,4 @@
-# Metals-API (metals-api)
+# Metals-API
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,57 +66,121 @@
 
 Metals-API provides a free, simple, and lightweight JSON API for current and historical precious metals rates and currency conversion. It supports real-time and historical data for gold, silver, platinum, palladium, and other metals in 170 world currencies.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/metals-api/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/metals-api/refs/heads/main/apis.yml)
+**Areas:** Currency · Financial Data · Gold · Precious Metals · Silver
 
-## Scope
+## Metals-API on APIs.io
 
-- **Type:** Index
+Everything profiled for Metals-API is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/metals-api/](https://apis.io/providers/metals-api/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (4)
 
-- Currency
-- Financial Data
-- Gold
-- Precious Metals
-- Silver
+- [Metals-API Analytics API](https://apis.io/apis/metals-api/metals-api-analytics-api/) — Time series, fluctuation, and OHLC analytics.
+- [Metals-API Conversion API](https://apis.io/apis/metals-api/metals-api-conversion-api/) — Currency and metal conversion endpoints.
+- [Metals-API Rates API](https://apis.io/apis/metals-api/metals-api-rates-api/) — Real-time and historical precious metals rates.
+- [Metals-API Reference API](https://apis.io/apis/metals-api/metals-api-reference-api/) — Symbols and reference data.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-03-01
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Metals-API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Metals-API provides real-time and historical precious metals rates and currency conversion in standard JSON format. Endpoints include latest rates, bid and ask prices, historical rates, and time-series data.
+- [Metals Api Agentic Access](https://apis.io/agentic-access/metals-api/metals-api-agentic-access/)
 
-- **Human URL:** [https://metals-api.com/](https://metals-api.com/)
-- **Base URL:** `https://metals-api.com/api`
+#### Collections (5)
 
-#### Tags
+Postman and Open Collection request collections.
 
-- Financial Data
-- Gold
-- Precious Metals
-- Silver
+- [Metals-API](https://apis.io/collections/metals-api/open-metals-api/)
+- [Metals Analytics API](https://apis.io/collections/metals-api/open-metals-api-analytics-api/)
+- [Metals Analytics Conversion API](https://apis.io/collections/metals-api/open-metals-api-conversion-api/)
+- [Metals Analytics Rates API](https://apis.io/collections/metals-api/open-metals-api-rates-api/)
+- [Metals Analytics Reference API](https://apis.io/collections/metals-api/open-metals-api-reference-api/)
 
-#### Properties
+#### Security (2)
 
-- [Documentation](https://metals-api.com/documentation)
-- [Getting Started](https://metals-api.com/documentation#access_key)
-- [OpenAPI](openapi/metals-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/metals-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/metals-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Authentication, trust centre, and vulnerability disclosure.
 
-## Common Properties
+- [Metals Api Authentication](https://apis.io/security/metals-api/metals-api-authentication/)
+- [Metals Api Domain Security](https://apis.io/security/metals-api/metals-api-domain-security/)
 
-- [LinkedIn](https://www.linkedin.com/company/zyla-labs)
-- [Portal](https://metals-api.com/)
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Metals Api Plans Pricing](https://apis.io/plans/metals-api/metals-api-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Metals Api Rate Limits](https://apis.io/rate-limits/metals-api/metals-api-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Metals Api Finops](https://apis.io/finops/metals-api/metals-api-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.metals-api.com/)
 - [Pricing](https://metals-api.com/pricing)
-- [Sign Up](https://metals-api.com/signup)
+- [Blog](https://metals-api.com/blog)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 34.3** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 47.1 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 45.2 |
+| Access clarity | 31.6 |
+
+**Agent readiness 20.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/metals-api/](https://apis.io/providers/metals-api/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Metals-API: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/metals-api/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
